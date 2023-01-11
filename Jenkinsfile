@@ -11,6 +11,8 @@ pipeline {
     }
     stages {
         stage('Create app resources') {
+            // Set AWS environment
+            
             steps {
                 // // script { }
                 sh '''
