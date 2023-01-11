@@ -18,6 +18,7 @@ pipeline {
                     
                     script {
                         queue_endpoint = sh(returnStdout: true, script: "/var/jenkins_home/terraform output queue_url").trim()
+                        echo queue_endpoint
                     }
                 }
             }
