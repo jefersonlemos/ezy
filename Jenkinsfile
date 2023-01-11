@@ -9,25 +9,27 @@ pipeline {
         string(name: 'visibility_timeout', description: 'Should the message wait for a while before entering the queue to be consumed - Default is 0.')
     }
     stages {
+        def queue_endpoint
         stage('Create app resources') {
-            def queue_endpoint
-
-            // // script { }
-            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
-            usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                sh """
-                cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
-                /var/jenkins_home/terraform plan \\
-                -var=\'environment=${params.environment}\' \\
-                -var=\'app_name=${params.app_name}\' \\
-                -var=\'user=${params.user}\' \\
-                -var=\'queue_name=${params.queue_name}\' \\
-                -var=\'message_retention_seconds=${params.retention_period}\' \\
-                -var=\'visibility_timeout_seconds=${params.visibility_timeout}\' \\
-                // --auto-approve
-                """
+            
+            steps {
+                // // script { }
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
+                usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    sh """
+                    cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
+                    /var/jenkins_home/terraform plan \\
+                    -var=\'environment=${params.environment}\' \\
+                    -var=\'app_name=${params.app_name}\' \\
+                    -var=\'user=${params.user}\' \\
+                    -var=\'queue_name=${params.queue_name}\' \\
+                    -var=\'message_retention_seconds=${params.retention_period}\' \\
+                    -var=\'visibility_timeout_seconds=${params.visibility_timeout}\' \\
+                    // --auto-approve
+                    """
+                    queue_endpoint = sh(returnStdout: true, script: "/var/jenkins_home/terraform output queue_url").trim()
+                }
             }
-
             
 
         }
