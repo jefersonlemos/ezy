@@ -13,7 +13,7 @@ pipeline {
             // Set AWS environment
             steps {
                 // // script { }
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws_personal',
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                     sh """
                     printf ${params.queue_name} && \\
