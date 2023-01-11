@@ -16,6 +16,7 @@ pipeline {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                     sh """
+                    env && \\
                     printf ${params.queue_name} && \\
                     cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
                     /var/jenkins_home/terraform apply && \\
