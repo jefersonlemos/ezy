@@ -13,7 +13,6 @@ pipeline {
             // Set AWS environment
             steps {
                 // // script { }
-                sh "echo sh isFoo is ${params.queue_name}"
                 sh """
                 printf ${params.queue_name} && \\
                 cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
