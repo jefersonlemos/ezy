@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    options { skipDefaultCheckout() }
     parameters {
         string(name: 'environment', description: 'If you dont set any env, it will be set as dev')
         string(name: 'app_name', description: 'The app name you are deploying.')
@@ -11,17 +12,17 @@ pipeline {
     stages {
         stage('Create app resources') {
             steps {
-                sh "echo testzim"
                 // // script { }
-                // sh """
-                // cd terraform/pipeline1 && /opt/terraform/terraform apply -var \'environment=${params.environment}\' \
-                // -var \'app_name=${params.app_name}\' \ 
-                // -var \'user=${params.user}\' \ 
-                // -var \'queue_name=${params.queue_name}\' 
-                // -var \'message_retention_seconds=${params.retention_period}\' 
-                // -var \'visibility_timeout_seconds=${params.visibility_timeout}\' \
-                // --auto-approve
-                // """
+                sh """
+                cd terraform/pipeline1 && /opt/terraform/terraform apply \
+                -var \'environment=${params.environment}\' \
+                -var \'app_name=${params.app_name}\' \ 
+                -var \'user=${params.user}\' \ 
+                -var \'queue_name=${params.queue_name}\' 
+                -var \'message_retention_seconds=${params.retention_period}\' 
+                -var \'visibility_timeout_seconds=${params.visibility_timeout}\' \
+                --auto-approve
+                """
             }
         }
         // stage('Deploy NGINX') {
