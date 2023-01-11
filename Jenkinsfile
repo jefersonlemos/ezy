@@ -27,7 +27,9 @@ pipeline {
                     -var=\'visibility_timeout_seconds=${params.visibility_timeout}\' \\
                     // --auto-approve
                     """
-                    queue_endpoint = sh(returnStdout: true, script: "/var/jenkins_home/terraform output queue_url").trim()
+                    script {
+                        queue_endpoint = sh(returnStdout: true, script: "/var/jenkins_home/terraform output queue_url").trim()
+                    }
                 }
             }
             
