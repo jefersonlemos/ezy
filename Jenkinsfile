@@ -13,7 +13,7 @@ pipeline {
             // Set AWS environment
             steps {
                 sh '''
-                printf ${params.queue_name
+                printf ${params.queue_name}
                 '''
             }
             steps {
