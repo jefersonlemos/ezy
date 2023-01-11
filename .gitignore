@@ -1,3 +1,4 @@
 id_rsa
 terraform/pipeline1/.terraform/*
 terraform1-3-7
+terraform/pipeline1/.terraform.lock.hcl
