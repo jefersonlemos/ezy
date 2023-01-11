@@ -25,7 +25,7 @@ pipeline {
                     // --auto-approve
                     // """
                     script {
-                        queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
+                        def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                         // bucket_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                     }
                 }
@@ -36,7 +36,7 @@ pipeline {
         stage('Deploy NGINX') {
             steps {
                 script {
-                    echo queue_endpoint
+                    def nginx_file = readYaml file: "nginx-deployment.yaml"
                 }
             }
         }
