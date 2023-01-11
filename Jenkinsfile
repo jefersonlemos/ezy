@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Create app resources') {
             steps {
+                sh "echo testzim"
                 // // script { }
                 // sh """
                 // cd terraform/pipeline1 && /opt/terraform/terraform apply -var \'environment=${params.environment}\' \
