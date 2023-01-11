@@ -36,7 +36,7 @@ pipeline {
         stage('Deploy NGINX') {
             steps {
                 script {
-                    def nginx_file = readYaml file: "nginx-deployment.yaml"
+                    def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
                 }
             }
         }
