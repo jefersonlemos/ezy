@@ -23,7 +23,7 @@ pipeline {
                     -var=\'user=${params.user}\' \\
                     -var=\'queue_name=${params.queue_name}\' \\
                     -var=\'message_retention_seconds=${params.retention_period}\' \\
-                    -var=\'visibility_timeout_seconds=${params.visibility_timeout}\' \\
+                    -var=\'visibility_timeout_seconds=${params.visibility_timeout}\' 
                     // --auto-approve
                     """
                     script {
