@@ -13,7 +13,8 @@ pipeline {
             // Set AWS environment
             steps {
                 // // script { }
-                withAWS(credentials: 'aws_personal') {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws_personal',
+                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                     sh """
                     printf ${params.queue_name} && \\
                     cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
