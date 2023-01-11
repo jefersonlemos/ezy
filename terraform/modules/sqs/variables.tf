@@ -8,18 +8,18 @@ variable "environment" {
 variable "user" {
   description = "The user who's creating the queue."
   type = string
-  default = null
+  default = {}
 }
 
 variable "app_name" {
   description = "The app name"
   type        = string
-  default     = null
+  default     = {}
 }
 variable "queue_name" {
   description = "This is the human-readable name of the queue. If omitted, Terraform will assign a random name"
   type        = string
-  default     = null
+  default     = {}
 }
 
 variable "message_retention_seconds" {
