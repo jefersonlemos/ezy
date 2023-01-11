@@ -27,10 +27,10 @@ pipeline {
                     // --auto-approve
                     """
                 }
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
-                usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+            }
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
+            usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                     queue_endpoint = sh(returnStdout: true, script: "/var/jenkins_home/terraform output queue_url").trim()
-                }
             }
         }
 
