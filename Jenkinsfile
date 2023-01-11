@@ -9,18 +9,12 @@ pipeline {
         string(name: 'visibility_timeout', description: 'Should the message wait for a while before entering the queue to be consumed - Default is 0.')
     }
     stages {
-        stage ('Debug') {
-            steps {
-                sh '''
-                printf ${params.queue_name}
-                '''                
-            }
-        }        
         stage('Create app resources') {
             // Set AWS environment
             steps {
                 // // script { }
                 sh '''
+                printf ${params.queue_name} && \\
                 cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
                 /var/jenkins_home/terraform apply && \\
                 -var \'environment=${params.environment}\' \\
