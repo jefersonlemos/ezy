@@ -1,4 +1,3 @@
-
 variable "environment" {
   type = string
   description = "Define the environment name"
@@ -13,6 +12,7 @@ variable "app_name" {
   description = "The app name"
   type        = string
 }
+
 variable "queue_name" {
   description = "This is the human-readable name of the queue. If omitted, Terraform will assign a random name"
   type        = string

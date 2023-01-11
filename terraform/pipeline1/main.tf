@@ -8,7 +8,7 @@ module "sqs" {
 
   tags = {
     Environment = "${var.environment}"
-    Name  = "${var.queue_name}"
+    Name        = "${var.queue_name}"
   }
 
 }
