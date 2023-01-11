@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    def queue_endpoint
     parameters {
         string(name: 'environment', description: 'If you dont set any env, it will be set as dev')
         string(name: 'app_name', description: 'The app name you are deploying.')
@@ -11,7 +10,7 @@ pipeline {
     }
     stages {
         stage('Create app resources') {
-            // Set AWS environment
+            def queue_endpoint
             steps {
                 // // script { }
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
@@ -27,12 +26,10 @@ pipeline {
                     -var=\'visibility_timeout_seconds=${params.visibility_timeout}\' \\
                     // --auto-approve
                     """
+                    queue_endpoint = sh(returnStdout: true, script: "/var/jenkins_home/terraform output queue_url").trim()
                 }
             }
-            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
-            usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    queue_endpoint = sh(returnStdout: true, script: "/var/jenkins_home/terraform output queue_url").trim()
-            }
+
         }
 
         // stage('Deploy NGINX') {
