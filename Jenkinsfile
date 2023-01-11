@@ -11,7 +11,11 @@ pipeline {
     stages {
         stage('Create app resources') {
             // Set AWS environment
-
+            steps {
+                sh '''
+                printf ${params.queue_name
+                '''
+            }
             steps {
                 // // script { }
                 sh '''
