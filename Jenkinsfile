@@ -16,7 +16,7 @@ pipeline {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
                 usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                     sh """
-                    cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
+                    cd terraform/pipeline1 && /var/jenkins_home/terraform get && \\
                     /var/jenkins_home/terraform plan \\
                     -var=\'environment=${params.environment}\' \\
                     -var=\'app_name=${params.app_name}\' \\
