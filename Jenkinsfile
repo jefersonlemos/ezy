@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    def queue_endpoint
     parameters {
         string(name: 'environment', description: 'If you dont set any env, it will be set as dev')
         string(name: 'app_name', description: 'The app name you are deploying.')
