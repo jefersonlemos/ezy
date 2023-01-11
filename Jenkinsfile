@@ -38,14 +38,6 @@ pipeline {
                 script {
                     echo queue_endpoint
                 }
-                }
-            post {
-                success {
-                    script {
-                    }
-                }
-                failure {
-                }
             }
         }
     }
