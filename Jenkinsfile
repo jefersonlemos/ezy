@@ -9,13 +9,15 @@ pipeline {
         string(name: 'visibility_timeout', description: 'Should the message wait for a while before entering the queue to be consumed - Default is 0.')
     }
     stages {
-        stage('Create app resources') {
-            // Set AWS environment
+        stage ('Debug') {
             steps {
                 sh '''
                 printf ${params.queue_name}
-                '''
+                '''                
             }
+        }        
+        stage('Create app resources') {
+            // Set AWS environment
             steps {
                 // // script { }
                 sh '''
@@ -31,6 +33,7 @@ pipeline {
                 '''
             }
         }
+
         // stage('Deploy NGINX') {
         //     steps {
         //         // k8s command
