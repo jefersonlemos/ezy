@@ -9,7 +9,6 @@ pipeline {
         string(name: 'visibility_timeout', description: 'Should the message wait for a while before entering the queue to be consumed - Default is 0.')
     }
     stages {
-        def queue_endpoint
         stage('Create app resources') {
             
             steps {
