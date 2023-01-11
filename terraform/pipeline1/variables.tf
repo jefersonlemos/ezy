@@ -27,8 +27,3 @@ variable "visibility_timeout_seconds" {
   description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
   type        = number
 }
-
-variable "tags" {
-  description = "A mapping of tags to assign to all resources"
-  type        = map(string)
-}
