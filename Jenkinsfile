@@ -17,6 +17,7 @@ pipeline {
                 usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                     sh """
                     cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
+                    /var/jenkins_home/terraform plan && \\
                     /var/jenkins_home/terraform apply \\
                     -var \'environment=${params.environment}\' \\
                     -var \'app_name=${params.app_name}\' \\
