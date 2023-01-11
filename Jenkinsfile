@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    options { skipDefaultCheckout() }
     parameters {
         string(name: 'environment', description: 'If you dont set any env, it will be set as dev')
         string(name: 'app_name', description: 'The app name you are deploying.')
@@ -12,7 +11,7 @@ pipeline {
     stages {
         stage('Create app resources') {
             // Set AWS environment
-            
+
             steps {
                 // // script { }
                 sh '''
