@@ -14,18 +14,18 @@ pipeline {
             steps {
                 // // script { }
                 sh "echo sh isFoo is ${params.queue_name}"
-                // sh '''
-                // printf ${params.queue_name} && \\
-                // cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
-                // /var/jenkins_home/terraform apply && \\
-                // -var \'environment=${params.environment}\' \\
-                // -var \'app_name=${params.app_name}\' \\
-                // -var \'user=${params.user}\' \\ 
-                // -var \'queue_name=${params.queue_name}\' \\
-                // -var \'message_retention_seconds=${params.retention_period}\' \\
-                // -var \'visibility_timeout_seconds=${params.visibility_timeout}\' \\
-                // --auto-approve
-                // '''
+                sh """
+                printf ${params.queue_name} && \\
+                cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
+                /var/jenkins_home/terraform apply && \\
+                -var \'environment=${params.environment}\' \\
+                -var \'app_name=${params.app_name}\' \\
+                -var \'user=${params.user}\' \\ 
+                -var \'queue_name=${params.queue_name}\' \\
+                -var \'message_retention_seconds=${params.retention_period}\' \\
+                -var \'visibility_timeout_seconds=${params.visibility_timeout}\' \\
+                --auto-approve
+                """
             }
         }
 
