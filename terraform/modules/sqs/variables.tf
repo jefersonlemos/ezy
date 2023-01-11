@@ -11,6 +11,11 @@ variable "user" {
   default = null
 }
 
+variable "app_name" {
+  description = "The app name"
+  type        = string
+  default     = null
+}
 variable "queue_name" {
   description = "This is the human-readable name of the queue. If omitted, Terraform will assign a random name"
   type        = string

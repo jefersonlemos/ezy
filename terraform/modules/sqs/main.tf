@@ -1,7 +1,7 @@
 resource "aws_sqs_queue" "sqs" {
 
   message_retention_seconds         = var.message_retention_seconds
-  name                              = "${var.queue_name}-${var.environment}"
+  name                              = "${var.app_name}-${var.queue_name}-${var.environment}"
   visibility_timeout_seconds        = var.visibility_timeout_seconds
   tags                              = var.tags
 }

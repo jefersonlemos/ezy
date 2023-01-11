@@ -2,7 +2,7 @@ module "sqs" {
   source = "../modules/sqs"
 
   user                       = "${var.user}"
-  queue_name                 = "${var.queue_name}-${var.environment}"
+  queue_name                 = "${var.app_name}-${var.queue_name}-${var.environment}"
   message_retention_seconds  = "${var.message_retention_seconds}"
   visibility_timeout_seconds = "${var.visibility_timeout_seconds}"
 
