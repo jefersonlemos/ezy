@@ -14,7 +14,7 @@ pipeline {
             steps {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
                 usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    sh 'echo TF'
+                    sh 'cd terraform/pipeline1 && /var/jenkins_home/terraform init'
                     // sh """
                     // cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
                     // /var/jenkins_home/terraform apply \\
