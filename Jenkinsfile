@@ -35,23 +35,16 @@ pipeline {
         }
         stage('Deploy NGINX') {
             steps {
-                def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
-                def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
-                
-                echo nginx_file['spec']['template']
-
-                // script {
-                //     def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
-                //     def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
+                script {
+                    def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
+                    def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
                     
-                //     for(key in nginx_file.spec.template.spec.containers.env) {
-                //         echo key
-                //     }
-                    // nginx_file.spec.template.spec.containers.env.name['SQS_ENDPOINT'].value = ['value': queue_endpoint]
+                    nginx_file.spec.template.spec.containers.env.name['SQS_ENDPOINT'].value = queue_endpoint
                     // echo nginx_file.spec.template.spec.containers.env.toString()
                     // nginx_file.spec.template.spec.containers.env[0].value = queue_endpoint
                     // writeYaml overwrite: true, file: 'k8s/nginx-deployment.yaml', data: firstFile
                     
+                }
             }
         }
     }
