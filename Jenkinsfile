@@ -37,6 +37,10 @@ pipeline {
             steps {
                 script {
                     def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
+                    nginx_file.spec.template.spec.env = queue_endpoint
+                    writeFile file:"test.yml", text:yamlToString(nginx_file)
+                    // writeYaml overwrite: true, file: 'k8s/nginx-deployment.yaml', data: firstFile
+                    
                 }
             }
         }
