@@ -37,10 +37,9 @@ pipeline {
             steps {
                 def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                 def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
-                    
-                for(key in nginx_file.spec.template.spec.containers.env) {
-                    echo key
-                }
+                
+                echo nginx_file['spec']['template']
+
                 // script {
                 //     def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                 //     def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
