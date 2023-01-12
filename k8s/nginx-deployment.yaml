@@ -21,8 +21,8 @@ spec:
           value: TBD
         - name: S3_ENDPOINT
           value: TBD
-      - name: nginx
-        image: nginx
+      - image: nginx
+        name: nginx
         ports:
         - containerPort: 80
 
