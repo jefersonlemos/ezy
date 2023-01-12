@@ -41,7 +41,6 @@ pipeline {
         }
         stage('Deploy NGINX') {
             steps {
-                sh 'echo NGINX; env' 
                 script {
                     def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_arn").trim()
                     def bucket_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output bucket_arn").trim()
@@ -50,11 +49,8 @@ pipeline {
                     base_file.spec.template.spec.containers.env[0][0][0].value = queue_endpoint
                     base_file.spec.template.spec.containers.env[0][0][1].value = bucket_endpoint   
                     writeYaml overwrite: true, file: 'k8s/nginx-deployment.yaml', data: base_file
-
-                    def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
-                    echo nginx_file.toString()
-                    
                 }
+                sh 'cat k8s/nginx-deployment.yaml'
             }
         }
     }
