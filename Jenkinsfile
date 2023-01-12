@@ -38,11 +38,7 @@ pipeline {
                 script {
                     def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                     def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
-                    // def map = [nginx_file]
-                    assert nginx_file.spec.template.spec.containers.env.name ==  'merdinha'
-                    // writeYaml file: 'merdinha.yaml', data: map
-                    // nginx_file.spec.template.spec.env = queue_endpoint
-                    // writeFile file:"test.yml", text:yamlToString(nginx_file)
+                    nginx_file.spec.template.spec.containers.env[0].value = queue_endpoint
                     // writeYaml overwrite: true, file: 'k8s/nginx-deployment.yaml', data: firstFile
                     
                 }
