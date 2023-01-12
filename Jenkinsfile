@@ -17,11 +17,11 @@ pipeline {
     stages {
         stage('Create app resources') {
             steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
-                usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    sh 'echo jaj'
+                sh """
+                    echo "TF" && env && cd terraform/pipeline1 && /var/jenkins_home/terraform init
+                """
                     // sh """
-                    // cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
+                    // echo TF && env && cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
                     // /var/jenkins_home/terraform apply \\
                     // -var=\'environment=${params.environment}\' \\
                     // -var=\'app_name=${params.app_name}\' \\
@@ -38,12 +38,10 @@ pipeline {
                     // }
                 }
             }
-            
-
         }
         stage('Deploy NGINX') {
             steps {
-                sh 'env' 
+                sh 'echo NGINX; env' 
                 script {
                     def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                     def nginx_file = readYaml file: "k8s/base-deployment.yaml"
