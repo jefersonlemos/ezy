@@ -9,6 +9,9 @@ pipeline {
         string(name: 'retention_period',  description: 'How long the queue should retain the message before be consumed - Default is 7 days (10080).')
         string(name: 'visibility_timeout', description: 'Should the message wait for a while before entering the queue to be consumed - Default is 0.')
     }
+    environment {
+        EZYCOLLECT = 'APPROVED'
+    }
     stages {
         stage('Create app resources') {
             steps {
