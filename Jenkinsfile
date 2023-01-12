@@ -41,6 +41,7 @@ pipeline {
                     
                     data = nginx_file.spec.template.spec.containers.env
                     data.each() {
+                        echo "oioi"
                         echo it.toString()
                     }
                     // echo nginx_file.spec.template.spec.containers.env.toString()
