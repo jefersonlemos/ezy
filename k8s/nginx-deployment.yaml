@@ -17,10 +17,10 @@ spec:
     spec:
       containers:
         env:
-        - name: SQS_ENDPOINT
-          value: TBD
-        - name: S3_ENDPOINT
-          value: TBD
+        - name: coco
+          value: bosta
+        - name: merdona
+          value: bostona
       - name: nginx
         image: nginx
         ports:
