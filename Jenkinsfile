@@ -11,13 +11,15 @@ pipeline {
     }
     environment {
         AWS_CREDS = credentials('aws-key')
+        AWS_ACCESS_KEY_ID     = $AWS_CREDS_USR
+        AWS_SECRET_ACCESS_KEY = $AWS_CREDS_PSW  
     }
     stages {
         stage('Create app resources') {
             steps {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key',
                 usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    sh 'echo jaja'
+                    sh 'echo jaj'
                     // sh """
                     // cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
                     // /var/jenkins_home/terraform apply \\
