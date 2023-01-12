@@ -36,8 +36,8 @@ pipeline {
 
         }
         stage('Deploy NGINX') {
-            sh 'env' 
             steps {
+                sh 'env' 
                 script {
                     def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                     def nginx_file = readYaml file: "k8s/base-deployment.yaml"
