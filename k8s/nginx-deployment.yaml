@@ -16,13 +16,13 @@ spec:
         app: nginx
     spec:
       containers:
+      - name: nginx
+        image: nginx
         env:
         - name: SQS_ENDPOINT
           value: TBD
         - name: S3_ENDPOINT
           value: TBD
-      - image: nginx
-        name: nginx
         ports:
         - containerPort: 80
 
