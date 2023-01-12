@@ -10,7 +10,7 @@ pipeline {
         string(name: 'visibility_timeout', description: 'Should the message wait for a while before entering the queue to be consumed - Default is 0.')
     }
     environment {
-        EZYCOLLECT = 'APPROVED'
+        AWS_CREDS = credentials('aws-key')
     }
     stages {
         stage('Create app resources') {
