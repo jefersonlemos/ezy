@@ -18,6 +18,11 @@ variable "queue_name" {
   type        = string
 }
 
+variable "bucket_name" {
+  description = "This is the human-readable name of the bucket. If omitted, Terraform will assign a random name"
+  type        = string
+}
+
 variable "message_retention_seconds" {
   description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
   type        = number

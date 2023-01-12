@@ -13,10 +13,12 @@ module "sqs" {
 
 }
 
-# module "s3" {
-#   source = "../modules/s3"
-
-#   vpc_name          = "${var.client_name}"
-#   cidr_vpc          = "${var.cidr_vpc}"
-
-# }
+module "s3" {
+  source = "../modules/s3"
+  
+  bucket_name = "${var.app_name}-${var.bucket_name}-${var.environment}"
+  tags = {
+      Environment = "${var.environment}"
+      Name        = "${var.bucket_name}"
+    }
+}
