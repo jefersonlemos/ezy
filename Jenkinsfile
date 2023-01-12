@@ -40,17 +40,9 @@ pipeline {
                     def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
                     
                     queue = nginx_file.spec.template.spec.containers.env[0][0][0].value = queue_endpoint
-                    s3 = data = nginx_file.spec.template.spec.containers.env[0][0][1].value = "jjaaja"    
-                    echo queue.toString()
-                    echo s3.toString()
-                    // data.each() {
-                    //     echo it.toString()
-                    //     echo "oioi"
+                    // s3 = data = nginx_file.spec.template.spec.containers.env[0][0][1].value = bucket_endpoint   
 
-                    // }
-                    // echo nginx_file.spec.template.spec.containers.env.toString()
-                    // nginx_file.spec.template.spec.containers.env[0].value = queue_endpoint
-                    // writeYaml overwrite: true, file: 'k8s/nginx-deployment.yaml', data: firstFile
+                    writeYaml overwrite: true, file: 'k8s/nginx-deployment2.yaml', data: nginx_file
                     
                 }
             }
