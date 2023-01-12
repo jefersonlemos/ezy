@@ -53,7 +53,6 @@ pipeline {
                     // nginx_file.spec.template.spec.containers.env[0].value = queue_endpoint
                     // writeYaml overwrite: true, file: 'k8s/nginx-deployment.yaml', data: firstFile
                     
-                }
             }
         }
     }
