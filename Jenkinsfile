@@ -18,7 +18,7 @@ pipeline {
         stage('Create app resources') {
             steps {
                 sh """
-                    echo "TF" && env && cd terraform/pipeline1 && /var/jenkins_home/terraform init
+                    echo "TF"
                 """
                     // sh """
                     // echo TF && env && cd terraform/pipeline1 && /var/jenkins_home/terraform init && \\
