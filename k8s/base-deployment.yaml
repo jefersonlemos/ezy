@@ -34,7 +34,7 @@ metadata:
   namespace: jeferson
   name: nginx-service
 spec:
-  type: NodePort
+  type: LoadBalance
   selector:
     app: nginx
   ports:
