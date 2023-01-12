@@ -11,8 +11,8 @@ pipeline {
     }
     environment {
         AWS_CREDS = credentials('aws-key')
-        AWS_ACCESS_KEY_ID     = $AWS_CREDS_USR
-        AWS_SECRET_ACCESS_KEY = $AWS_CREDS_PSW  
+        AWS_ACCESS_KEY_ID     = ${AWS_CREDS_USR}
+        AWS_SECRET_ACCESS_KEY = ${AWS_CREDS_PSW}  
     }
     stages {
         stage('Create app resources') {
