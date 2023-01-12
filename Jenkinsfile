@@ -36,6 +36,7 @@ pipeline {
 
         }
         stage('Deploy NGINX') {
+            sh 'env' 
             steps {
                 script {
                     def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
