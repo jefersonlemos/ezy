@@ -16,6 +16,11 @@ spec:
         app: nginx
     spec:
       containers:
+        env:
+        - name: SQS_ENDPOINT
+          value: TBD
+        - name: S3_ENDPOINT
+          value: TBD
       - name: nginx
         image: nginx
         ports:
