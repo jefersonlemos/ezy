@@ -36,7 +36,7 @@ pipeline {
                     //     def queue_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                     //     // def bucket_endpoint = sh(returnStdout: true, script: "cd terraform/pipeline1 && /var/jenkins_home/terraform output queue_url").trim()
                     // }
-                }
+                // }
             }
         }
         stage('Deploy NGINX') {
