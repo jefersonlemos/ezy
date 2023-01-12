@@ -40,7 +40,9 @@ pipeline {
                     def nginx_file = readYaml file: "k8s/nginx-deployment.yaml"
                     
                     data = nginx_file.spec.template.spec.containers.env.toString()
-                    echo data
+                    data.each() {
+                        echo it
+                    }
                     // echo nginx_file.spec.template.spec.containers.env.toString()
                     // nginx_file.spec.template.spec.containers.env[0].value = queue_endpoint
                     // writeYaml overwrite: true, file: 'k8s/nginx-deployment.yaml', data: firstFile
